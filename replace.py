@@ -6,7 +6,9 @@ ofile.close()
 
 cfdic = {}
 
+print '====start===='
 print '@@config count : ' + str(len(configlist))
+
 for cfline in configlist:
     cfitem = cfline.split('|');
 
@@ -20,7 +22,6 @@ for item in cfdic:
 
 for filename in os.listdir('icon'):
     if filename.find('.png') != -1:
-        print 'PNG : ' + filename
         ofile = open('icon/' + filename, "rb")
         barray = ofile.read(8 + 25)
         ofile.close()
@@ -37,11 +38,13 @@ for filename in os.listdir('icon'):
 
         iwidth = iwidth >> 4
         iheight = iheight >> 4
-        print 'width : ' + str(iwidth) + ', height : ' + str(iheight)
+        print 'PNG : ' + filename,
+        print ', width : ' + str(iwidth) + ', height : ' + str(iheight)
 
         szpath = cfdic[str(iwidth) + '*' + str(iheight)]
         if len(szpath) > 0:
             re = os.system(r'cp icon/%s %s/icon.png' % (filename, szpath))
             if re == 0:
-                print 'success'
+                print '----success----'
         
+print '=====end====='
