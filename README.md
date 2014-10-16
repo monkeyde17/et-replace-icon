@@ -10,11 +10,11 @@
 
 * 识别`PNG`的`iHDR`信息来识别分辨率
 * 复制到对应文件夹下，这里写成配置文件形式
-    例如：72|72|/proj.android/res/drawable-hdpi|
+    例如：72|72|./proj.android/res/drawable-hdpi|
 
 ## 用法
 
-* 配置好`config.in`，用`|`作为分隔符号，例如`72|72|/proj.android/res/drawable-hdpi|`
+* 配置好`config.in`，用`|`作为分隔符号，例如`72|72|./proj.android/res/drawable-hdpi|`
 * 运行`./run.sh`
 
 
