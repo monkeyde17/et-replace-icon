@@ -1,4 +1,5 @@
 import os
+from PIL import Image
 
 ofile = open('config.in', 'r');
 configlist = ofile.readlines()
@@ -22,22 +23,9 @@ for item in cfdic:
 
 for filename in os.listdir('icon'):
     if filename.find('.png') != -1:
-        ofile = open('icon/' + filename, "rb")
-        barray = ofile.read(8 + 25)
-        ofile.close()
+        im = Image.open('icon/' + filename)
+        iwidth, iheight = im.size;
 
-        iwidth = int(0)
-        iheight = int(0)
-
-        for i in range(0, 4):
-            iwidth = iwidth + ord(barray[16 + i])
-            iwidth = iwidth << 4
-
-            iheight = iheight + ord(barray[16 + 4 + i])
-            iheight = iheight << 4
-
-        iwidth = iwidth >> 4
-        iheight = iheight >> 4
         print 'PNG : ' + filename,
         print ', width : ' + str(iwidth) + ', height : ' + str(iheight)
 
@@ -46,5 +34,7 @@ for filename in os.listdir('icon'):
             re = os.system(r'cp icon/%s %s/icon.png' % (filename, szpath))
             if re == 0:
                 print '----success----'
+
+        #ofile.close()
         
 print '=====end====='
